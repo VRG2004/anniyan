@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevents scrolling during video */
+    background-image: url('reaper1.png');
+}
+
+#videoContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensures video is behind the form */
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes video cover the entire container */
+}
+
+#mainContent {
+    z-index: 2; /* Ensures content is above the video */
+}
+
+.hidden {
+    display: none; /* Hide main content initially */
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #1f6b2b;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    text-align: left;
+    font-size: 14px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: #fff;
+}
+
+button {
+    padding: 10px;
+    background: #1f6b2b;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #1f6b2b;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #00ff00;
+}
+
+
+body, h1, label, button, input, textarea, #message {
+    font-family: 'CustomTamilFont', sans-serif;
+    font-weight: bold;
+    color: #00FF00;
+    text-shadow: 2px 2px 4px #000000;
+}
+#goToFormButton,
+#anotherButtonId { /* Replace 'anotherButtonId' with the actual ID of your second button */
+    background-color: #2d2d2d; /* Dark gray for a dark theme */
+    color: #00FF00; /* Neon green text for a supernatural feel */
+    border: 2px solid #00FF00; /* Matching green border */
+    padding: 10px 20px; /* Add some padding for a comfortable click area */
+    font-family: 'Baloo Thambi 2', cursive; /* Use a Tamil-friendly, bold font */
+    font-size: 18px; /* Adjust size for better readability */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    margin: 10px; /* Add margin to create space between buttons */
+}
+
+#goToFormButton:hover,
+#anotherButtonId:hover {
+    background-color: #00FF00; /* Green background on hover */
+    color: #000000; /* Black text for contrast on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0px 0px 15px #00FF00; /* Glowing green shadow for eerie effect */
+}
+
+#goToFormButton:active,
+#anotherButtonId:active {
+    background-color: #008f00; /* Darker green when pressed */
+    transform: scale(0.98); /* Slightly shrink on click */
+}
+
+
+/* Adjust the container to place it at the top center */
+#logo-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically (within the specified height) */
+    position: absolute;      /* Position at the top */
+    top: 0;                  /* Align with the top of the page */
+    width: 100%;             /* Full width to maintain centering */
+    height: 100px;           /* Adjust height if needed */
+    margin-top: 10px;        /* Small margin from the top */
+    z-index: 3;              /* Make sure it stays on top of other elements */
+}
+
+/* Ensure the logo size scales properly */
+#logo {
+    max-width: 300px;  /* Control max size */
+    width: auto;
+    height: auto;
+    transition: filter 0.5s ease-in-out; /* Smooth glow effect */
+    filter: drop-shadow(0 0 5px #00FF00);
+}
+
+/* Glow effect on hover */
+#logo:hover {
+    filter: drop-shadow(0 0 10px #00FF00) drop-shadow(0 0 20px #00FF00)
+            drop-shadow(0 0 40px #00FF00) drop-shadow(0 0 60px #00FF00);
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniyan.com</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="logo-container">
+        <img id="logo" src="Green_Cute_Tea_Plantation_Text_Logo-removebg-preview.png" alt="anniyan.com">
+    </div>
+    
+    <div id="videoContainer" style="display: none;">
+        <video id="introVideo">
+            <source src="annayan.mov" type="video/mp4"> <!-- Replace with your video file -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <button id="playButton">"💀அண்ணியன்.com கு வரவேற்கிறேன், இங்கு நீங்கள் உங்கள் பிரச்சினைகளை  சமர்ப்பிக்கலாம்.💀"</button> <!-- Play button -->
+ 
+    <div id="mainContent" class="hidden">
+        <div class="container">
+            <h1>குற்றவாளியின் தகவல்</h1>
+            <form id="reportForm">
+                <label for="name">குற்றவாளியின் பெயர்:</label>
+                <input type="text" id="name" placeholder="குற்றவாளியின் பெயர் இங்கே உள்ளிடவும்" required>
+                
+                <label for="age">குற்றவாளியின் வயது:</label>
+                <input type="number" id="age" placeholder="குற்றவாளியின் வயது உள்ளிடவும்" required>
+                
+                <label for="problem">சொல்ல வேண்டிய பிரச்சினை:</label>
+                <textarea id="problem" rows="5" placeholder="பிரச்சினை பற்றி விவரிக்கவும்..." required></textarea>
+                
+                <button type="submit">அனுப்பவும்</button>
+            </form>
+            <p id="message"></p>
+        </div>
+    <!-- Modal for punishment -->
+<div id="punishmentModal" class="hidden">
+    <div class="modal-content">
+        <p id="punishmentMessage"></p>
+        <!-- Refresh Button (initially hidden) -->
+        <button id="refreshButton" class="hidden">புதிய புகார்
+        </button>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

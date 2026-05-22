@@ -1,153 +1,447 @@
+/* BODY */
+
 body {
-    font-family: Arial, sans-serif;
+
+    font-family: 'Baloo Thambi 2', cursive;
+
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+
     margin: 0;
-    overflow: hidden; /* Prevents scrolling during video */
+
+    padding: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow-x: hidden;
+
     background-image: url('reaper1.png');
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
 }
+
+
+
+/* VIDEO CONTAINER */
 
 #videoContainer {
-    position: absolute;
+
+    position: fixed;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
-    z-index: 1; /* Ensures video is behind the form */
+
+    z-index: 1000;
+
+    background: black;
 }
+
+
+
+/* VIDEO */
 
 video {
+
     width: 100%;
+
     height: 100%;
-    object-fit: cover; /* Makes video cover the entire container */
+
+    object-fit: cover;
 }
+
+
+
+/* SKIP BUTTON */
+
+#skipButton {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 20px;
+
+    padding: 12px 20px;
+
+    background-color: rgba(0,0,0,0.7);
+
+    color: #00ff00;
+
+    border: 2px solid #00ff00;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    z-index: 2000;
+
+    transition: 0.3s;
+}
+
+
+#skipButton:hover {
+
+    background-color: #00ff00;
+
+    color: black;
+
+    box-shadow: 0px 0px 20px #00ff00;
+}
+
+
+
+/* PLAY BUTTON */
+
+#playButton {
+
+    position: absolute;
+
+    z-index: 5;
+
+    padding: 15px 25px;
+
+    background: rgba(0,0,0,0.8);
+
+    color: #00ff00;
+
+    border: 2px solid #00ff00;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    text-shadow: 0px 0px 10px #00ff00;
+
+    transition: 0.3s;
+}
+
+
+#playButton:hover {
+
+    background: #00ff00;
+
+    color: black;
+
+    box-shadow: 0px 0px 25px #00ff00;
+}
+
+
+
+/* MAIN CONTENT */
 
 #mainContent {
-    z-index: 2; /* Ensures content is above the video */
+
+    z-index: 2;
+
+    padding-top: 120px;
 }
+
+
+
+/* HIDDEN */
 
 .hidden {
-    display: none; /* Hide main content initially */
+
+    display: none;
 }
+
+
+
+/* CONTAINER */
 
 .container {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    max-width: 400px;
-    width: 100%;
+
+    background: rgba(0, 0, 0, 0.85);
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0px 0px 25px rgba(0,255,0,0.4);
+
+    max-width: 420px;
+
+    width: 90%;
+
     text-align: center;
+
+    backdrop-filter: blur(5px);
 }
+
+
+
+/* HEADING */
 
 h1 {
+
     margin-bottom: 20px;
-    font-size: 24px;
-    color: #1f6b2b;
+
+    font-size: 28px;
+
+    color: #00ff00;
+
+    text-shadow: 0px 0px 10px #00ff00;
 }
+
+
+
+/* FORM */
 
 form {
+
     display: flex;
+
     flex-direction: column;
-    gap: 10px;
+
+    gap: 12px;
 }
+
+
+
+/* LABEL */
 
 label {
+
     text-align: left;
-    font-size: 14px;
-}
 
-input, textarea {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #333;
-    color: #fff;
-}
+    font-size: 15px;
 
-button {
-    padding: 10px;
-    background: #1f6b2b;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #1f6b2b;
-}
-
-#message {
-    margin-top: 20px;
-    font-size: 14px;
     color: #00ff00;
 }
 
 
-body, h1, label, button, input, textarea, #message {
-    font-family: 'CustomTamilFont', sans-serif;
+
+/* INPUT */
+
+input,
+textarea {
+
+    padding: 12px;
+
+    border: 1px solid #00ff00;
+
+    border-radius: 6px;
+
+    background: rgba(255,255,255,0.1);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+
+/* INPUT FOCUS */
+
+input:focus,
+textarea:focus {
+
+    border-color: #00ff00;
+
+    box-shadow: 0px 0px 10px #00ff00;
+}
+
+
+
+/* BUTTON */
+
+button {
+
+    padding: 12px;
+
+    background: #145c1d;
+
+    border: none;
+
+    border-radius: 6px;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
     font-weight: bold;
-    color: #00FF00;
-    text-shadow: 2px 2px 4px #000000;
-}
-#goToFormButton,
-#anotherButtonId { /* Replace 'anotherButtonId' with the actual ID of your second button */
-    background-color: #2d2d2d; /* Dark gray for a dark theme */
-    color: #00FF00; /* Neon green text for a supernatural feel */
-    border: 2px solid #00FF00; /* Matching green border */
-    padding: 10px 20px; /* Add some padding for a comfortable click area */
-    font-family: 'Baloo Thambi 2', cursive; /* Use a Tamil-friendly, bold font */
-    font-size: 18px; /* Adjust size for better readability */
-    border-radius: 5px; /* Slightly rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s, color 0.3s, transform 0.3s;
-    margin: 10px; /* Add margin to create space between buttons */
-}
 
-#goToFormButton:hover,
-#anotherButtonId:hover {
-    background-color: #00FF00; /* Green background on hover */
-    color: #000000; /* Black text for contrast on hover */
-    transform: scale(1.05); /* Slight scaling effect */
-    box-shadow: 0px 0px 15px #00FF00; /* Glowing green shadow for eerie effect */
-}
-
-#goToFormButton:active,
-#anotherButtonId:active {
-    background-color: #008f00; /* Darker green when pressed */
-    transform: scale(0.98); /* Slightly shrink on click */
+    transition: 0.3s;
 }
 
 
-/* Adjust the container to place it at the top center */
+
+/* BUTTON HOVER */
+
+button:hover {
+
+    background: #00ff00;
+
+    color: black;
+
+    box-shadow: 0px 0px 20px #00ff00;
+}
+
+
+
+/* MESSAGE */
+
+#message {
+
+    margin-top: 20px;
+
+    font-size: 15px;
+
+    color: #00ff00;
+
+    text-shadow: 0px 0px 10px #00ff00;
+}
+
+
+
+/* LOGO */
+
 #logo-container {
+
+    position: fixed;
+
+    top: 0;
+
+    width: 100%;
+
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically (within the specified height) */
-    position: absolute;      /* Position at the top */
-    top: 0;                  /* Align with the top of the page */
-    width: 100%;             /* Full width to maintain centering */
-    height: 100px;           /* Adjust height if needed */
-    margin-top: 10px;        /* Small margin from the top */
-    z-index: 3;              /* Make sure it stays on top of other elements */
+
+    justify-content: center;
+
+    z-index: 5;
 }
 
-/* Ensure the logo size scales properly */
+
 #logo {
-    max-width: 300px;  /* Control max size */
-    width: auto;
-    height: auto;
-    transition: filter 0.5s ease-in-out; /* Smooth glow effect */
-    filter: drop-shadow(0 0 5px #00FF00);
+
+    max-width: 300px;
+
+    margin-top: 10px;
+
+    filter: drop-shadow(0 0 10px #00ff00);
+
+    transition: 0.5s;
 }
 
-/* Glow effect on hover */
+
 #logo:hover {
-    filter: drop-shadow(0 0 10px #00FF00) drop-shadow(0 0 20px #00FF00)
-            drop-shadow(0 0 40px #00FF00) drop-shadow(0 0 60px #00FF00);
+
+    filter:
+    drop-shadow(0 0 20px #00ff00)
+    drop-shadow(0 0 40px #00ff00);
+}
+
+
+
+/* MODAL */
+
+#punishmentModal {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(0,0,0,0.8);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 3000;
+}
+
+
+
+/* MODAL CONTENT */
+
+.modal-content {
+
+    background: black;
+
+    border: 2px solid #00ff00;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    width: 80%;
+
+    max-width: 400px;
+
+    box-shadow: 0px 0px 20px #00ff00;
+}
+
+
+
+/* MOBILE */
+
+@media(max-width: 600px){
+
+    .container {
+
+        width: 92%;
+
+        padding: 18px;
+    }
+
+    h1 {
+
+        font-size: 22px;
+    }
+
+    #skipButton {
+
+        padding: 10px 15px;
+
+        font-size: 14px;
+    }
+
+    #logo {
+
+        max-width: 220px;
+    }
+
+    #playButton {
+
+        width: 90%;
+
+        font-size: 16px;
+    }
+
 }

@@ -1,181 +1,431 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-    <title>Anniyan.com</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>அந்நியன்.com | Anniyan.com - கருட புராண நீதி தளம்</title>
+    <meta name="description" content="அந்நியன் நீதி தளம் - சமூக விரோதிகள் மற்றும் குற்றவாளிகள் பற்றிய புகார்களை கருட புராணத்தின்படி விசாரித்து தீர்ப்பு வழங்கும் தளம்.">
+    <meta property="og:title" content="அந்நியன்.com | Anniyan.com">
+    <meta property="og:description" content="கருட புராண நீதி மற்றும் தண்டனை தளம்">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500;600;700;800&family=Cinzel:wght@600;800;900&family=Creepster&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Tamil Fonts -->
-
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
-    rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@700&display=swap"
-    rel="stylesheet">
-
 </head>
 
-<body>
+<body class="theme-dark">
+    <!-- Ambient Canvas Background -->
+    <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+    <div class="bg-vignette"></div>
 
+    <!-- AUDIO TOGGLE / UTILITY BAR -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <div class="brand-area" id="brandHomeBtn" role="button" tabindex="0" title="Home">
+                <div class="brand-emblem">
+                    <svg viewBox="0 0 24 24" class="skull-svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="10" r="1.5" fill="currentColor" />
+                        <circle cx="15" cy="10" r="1.5" fill="currentColor" />
+                        <path d="M8 20v-2a4 4 0 0 1 8 0v2" />
+                        <path d="M12.5 14v2" />
+                        <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6.5 5 7.5V20a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-2.5c2.5-1 5-4 5-7.5a8 8 0 0 0-8-8z" />
+                        <path d="M9 17h6" />
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title" id="txtBrandTitle">அந்நியன்<span class="dot-com">.COM</span></span>
+                    <span class="brand-tagline" id="txtBrandTagline">கருட புராண நீதிப் போர்டல்</span>
+                </div>
+            </div>
 
-    <!-- LOGO -->
-
-    <div id="logo-container">
-
-        <img id="logo"
-        src="Green_Cute_Tea_Plantation_Text_Logo-removebg-preview.png"
-        alt="anniyan.com">
-
-    </div>
-
-
-
-    <!-- PLAY BUTTON -->
-
-    <button id="playButton">
-
-        💀 அண்ணியன்.com கு வரவேற்கிறேன்,
-        இங்கு நீங்கள் உங்கள் பிரச்சினைகளை
-        சமர்ப்பிக்கலாம் 💀
-
-    </button>
-
-
-
-    <!-- VIDEO SECTION -->
-
-    <div id="videoContainer"
-    style="display: none;">
-
-        <video id="introVideo">
-
-            <source src="annayan.mov"
-            type="video/mp4">
-
-            Your browser does not support video.
-
-        </video>
-
-
-        <!-- SKIP BUTTON -->
-
-        <button id="skipButton">
-
-            Skip Intro
-
-        </button>
-
-    </div>
-
-
-
-    <!-- MAIN CONTENT -->
-
-    <div id="mainContent"
-    class="hidden">
-
-        <div class="container">
-
-            <h1>குற்றவாளியின் தகவல்</h1>
-
-            <form id="reportForm">
-
-                <!-- NAME -->
-
-                <label for="name">
-
-                    குற்றவாளியின் பெயர்:
-
-                </label>
-
-                <input type="text"
-                id="name"
-                placeholder="பெயரை உள்ளிடவும்"
-                required>
-
-
-
-                <!-- AGE -->
-
-                <label for="age">
-
-                    குற்றவாளியின் வயது:
-
-                </label>
-
-                <input type="number"
-                id="age"
-                placeholder="வயதை உள்ளிடவும்"
-                required>
-
-
-
-                <!-- PROBLEM -->
-
-                <label for="problem">
-
-                    சொல்ல வேண்டிய பிரச்சினை:
-
-                </label>
-
-                <textarea id="problem"
-                rows="5"
-                placeholder="பிரச்சினையை விவரிக்கவும்..."
-                required></textarea>
-
-
-
-                <!-- SUBMIT -->
-
-                <button type="submit">
-
-                    அனுப்பவும்
-
+            <!-- Navigation Tabs -->
+            <nav class="portal-nav" id="mainNav">
+                <button class="nav-btn active" id="tabComplaintBtn" data-target="complaintSection">
+                    <span class="nav-icon">⚖️</span>
+                    <span class="nav-text" id="txtNavReport">புகார் பதிவு</span>
                 </button>
+                <button class="nav-btn" id="tabCodexBtn" data-target="codexSection">
+                    <span class="nav-icon">📜</span>
+                    <span class="nav-text" id="txtNavCodex">கருட புராணம்</span>
+                </button>
+                <button class="nav-btn" id="tabLedgerBtn" data-target="ledgerSection">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text" id="txtNavLedger">தீர்ப்புப் பதிவேடு</span>
+                    <span class="ledger-count-badge" id="ledgerBadge">0</span>
+                </button>
+                <button class="nav-btn intro-replay-btn" id="replayIntroBtn" title="திரைப்பட அறிமுக வீடியோ (Replay Movie Video)">
+                    <span class="nav-icon">🎬</span>
+                    <span class="nav-text" id="txtNavVideo">திரைப்பட வீடியோ</span>
+                </button>
+            </nav>
 
-            </form>
-
-
-            <!-- SUCCESS MESSAGE -->
-
-            <p id="message"></p>
-
+            <!-- Settings / Utilities -->
+            <div class="header-actions">
+                <button class="action-btn" id="soundToggleBtn" title="ஒலி இயக்கம் (Sound Effects)">
+                    <span id="soundIcon">🔊</span>
+                    <span class="action-btn-text" id="soundStatusText">ஒலி ஆன்</span>
+                </button>
+                <button class="action-btn" id="langToggleBtn" title="Language / மொழி">
+                    <span class="lang-code">EN</span>
+                    <span class="action-btn-text">English</span>
+                </button>
+            </div>
         </div>
+    </header>
 
+    <!-- CINEMATIC MOVIE INTRO VIDEO (ONLY VIDEO AND SKIP BUTTON) -->
+    <div id="movieVideoModal" class="yt-video-overlay">
+        <div class="yt-player-frame" id="ytPlayerFrame">
+            <!-- Pure Video Screen Container -->
+            <div class="yt-screen-container" id="ytScreenContainer">
+                <video id="anniyanVideo" class="yt-main-video" playsinline autoplay muted preload="auto" poster="/src/assets/images/anniyan_cinematic_intro_1788246463367.jpg">
+                    <source src="ANNIYAN.MOV" type="video/mp4">
+                    <source src="/ANNIYAN.MOV" type="video/mp4">
+                    <source src="anniyan.mov" type="video/mp4">
+                    <source src="/anniyan.mov" type="video/mp4">
+                    <source src="ANNIYAN.MOV" type="video/quicktime">
+                    <source src="/anniyan.mov" type="video/quicktime">
+                    <source src="ANNIYAN.webm" type="video/webm">
+                    <source src="/anniyan.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Fallback background if video is preparing -->
+                <img src="/src/assets/images/anniyan_cinematic_intro_1788246463367.jpg" alt="Anniyan Intro" class="yt-cinema-bg" id="ytCinemaBg" referrerPolicy="no-referrer">
+
+                <!-- Subtle Unmute / Play Prompt on Click -->
+                <div class="yt-unmute-prompt" id="ytUnmutePrompt">
+                    <span>🔊 Click anywhere to Enable Audio</span>
+                </div>
+
+                <!-- SKIP BUTTON (BOTTOM RIGHT) -->
+                <div class="yt-skip-wrapper" id="ytSkipWrapper">
+                    <button class="yt-skip-btn" id="ytSkipBtn">
+                        <span class="yt-skip-text" id="ytSkipText">Skip Video</span>
+                        <span class="yt-skip-icon">⏭️</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- MAIN PORTAL WRAPPER -->
+    <main class="portal-main-container">
 
+        <!-- SECTION 1: COMPLAINT FORM -->
+        <section id="complaintSection" class="portal-section active-section">
+            <div class="section-card portal-grid-layout">
+                
+                <!-- Left: Form Area -->
+                <div class="form-wrapper">
+                    <div class="card-header">
+                        <div class="badge-tag" id="txtBadgeForm">⚖️ நேரடி புகார் மனு</div>
+                        <h2 class="card-title" id="txtFormHeading">குற்றவாளியின் தகவல் & புகார் விவரம்</h2>
+                        <p class="card-desc" id="txtFormSub">சமூகத்திற்கு எதிரான துரோகங்கள், லஞ்சம் மற்றும் அலட்சியங்களை பதிவு செய்யுங்கள்.</p>
+                    </div>
 
-    <!-- MODAL -->
+                    <form id="reportForm" class="styled-form" novalidate>
+                        <!-- Culprit Name -->
+                        <div class="form-group">
+                            <label for="culpritName" class="form-label">
+                                <span class="label-txt" id="lblCulpritName">குற்றவாளியின் பெயர் / பதவி</span>
+                                <span class="req-star">*</span>
+                            </label>
+                            <div class="input-container">
+                                <span class="input-icon">👤</span>
+                                <input type="text" id="culpritName" class="form-input" placeholder="எ.கா: லஞ்ச அதிகாரி முருகன் / போலியான உணவு உற்பத்தியாளர்" required autocomplete="off">
+                            </div>
+                        </div>
 
-    <div id="punishmentModal"
-    class="hidden">
+                        <!-- Culprit Age & Location Grid -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="culpritAge" class="form-label">
+                                    <span class="label-txt" id="lblCulpritAge">குற்றவாளியின் வயது</span>
+                                    <span class="req-star">*</span>
+                                </label>
+                                <div class="input-container">
+                                    <span class="input-icon">⏳</span>
+                                    <input type="number" id="culpritAge" class="form-input" min="10" max="110" placeholder="வயது (எ.கா: 45)" required>
+                                </div>
+                            </div>
 
-        <div class="modal-content">
+                            <div class="form-group">
+                                <label for="crimeLocation" class="form-label">
+                                    <span class="label-txt" id="lblLocation">குற்றம் நடந்த இடம் / நகரம்</span>
+                                </label>
+                                <div class="input-container">
+                                    <span class="input-icon">📍</span>
+                                    <input type="text" id="crimeLocation" class="form-input" placeholder="எ.கா: சென்னை, கோயம்புத்தூர், மதுரை">
+                                </div>
+                            </div>
+                        </div>
 
-            <p id="punishmentMessage"></p>
+                        <!-- Crime Category Picker -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="label-txt" id="lblCategory">குற்றத்தின் வகைப்பாடு (Crime Category)</span>
+                                <span class="req-star">*</span>
+                            </label>
+                            <div class="crime-category-grid" id="crimeCategoryGrid">
+                                <button type="button" class="category-chip active" data-cat="bribery">
+                                    <span class="cat-icon">💰</span>
+                                    <span class="cat-label">லஞ்சம் & ஊழல்</span>
+                                </button>
+                                <button type="button" class="category-chip" data-cat="adulteration">
+                                    <span class="cat-icon">🧪</span>
+                                    <span class="cat-label">உணவு கலப்படம்</span>
+                                </button>
+                                <button type="button" class="category-chip" data-cat="negligence">
+                                    <span class="cat-icon">⚠️</span>
+                                    <span class="cat-label">உயிர் அலட்சியம்</span>
+                                </button>
+                                <button type="button" class="category-chip" data-cat="fraud">
+                                    <span class="cat-icon">🎭</span>
+                                    <span class="cat-label">ஏமாற்றுதல் & மோசடி</span>
+                                </button>
+                                <button type="button" class="category-chip" data-cat="traffic">
+                                    <span class="cat-icon">🚦</span>
+                                    <span class="cat-label">விபத்து & விதிமீறல்</span>
+                                </button>
+                                <button type="button" class="category-chip" data-cat="civic">
+                                    <span class="cat-icon">🏛️</span>
+                                    <span class="cat-label">பொது நல துரோகம்</span>
+                                </button>
+                            </div>
+                        </div>
 
-            <button id="refreshButton"
-            class="hidden">
+                        <!-- Problem Description -->
+                        <div class="form-group">
+                            <label for="crimeDetails" class="form-label">
+                                <span class="label-txt" id="lblDetails">குற்றத்தின் முழு விவரம் (Complaint Description)</span>
+                                <span class="req-star">*</span>
+                            </label>
+                            <textarea id="crimeDetails" class="form-textarea" rows="4" placeholder="குற்றவாளி செய்த அநீதியை விரிவாக விவரிக்கவும்... (எ.கா: தரமற்ற உதிரிபாகங்கள் பொருத்தியதால் ஏற்பட்ட விபத்து, ஏழைகளிடம் லஞ்சம் வாங்கியது...)" required></textarea>
+                            <div class="textarea-hint" id="txtTextareaHint">குறைந்தபட்சம் 10 எழுத்துக்கள் உள்ளிடவும்</div>
+                        </div>
 
-                புதிய புகார்
+                        <!-- Severity Level -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="label-txt" id="lblSeverity">குற்றத்தின் தீவிரம் (Severity Level)</span>
+                            </label>
+                            <div class="severity-picker">
+                                <label class="severity-option">
+                                    <input type="radio" name="severity" value="moderate">
+                                    <span class="severity-card moderate">
+                                        <span class="sev-dot"></span>
+                                        <span class="sev-text" id="sevModerate">நடுத்தரம்</span>
+                                    </span>
+                                </label>
+                                <label class="severity-option">
+                                    <input type="radio" name="severity" value="severe" checked>
+                                    <span class="severity-card severe">
+                                        <span class="sev-dot"></span>
+                                        <span class="sev-text" id="sevSevere">கொடூரமானது</span>
+                                    </span>
+                                </label>
+                                <label class="severity-option">
+                                    <input type="radio" name="severity" value="unforgivable">
+                                    <span class="severity-card unforgivable">
+                                        <span class="sev-dot"></span>
+                                        <span class="sev-text" id="sevExtreme">மன்னிக்க முடியாதது</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
 
-            </button>
+                        <!-- Submit Button -->
+                        <button type="submit" id="submitReportBtn" class="submit-btn">
+                            <span class="btn-glow-layer"></span>
+                            <span class="btn-content">
+                                <span class="skull-anim">💀</span>
+                                <span class="submit-txt" id="txtSubmitBtn">அந்நியனுக்கு மனு அனுப்பு (தீர்ப்பு கோருக)</span>
+                            </span>
+                        </button>
+                    </form>
+                </div>
 
+                <!-- Right: Rules & Live Info Panel -->
+                <div class="side-info-panel">
+                    <div class="info-card purana-rule-card">
+                        <div class="info-badge">⚔️ அந்நியன் தர்மம்</div>
+                        <h3 class="info-title" id="txtRuleTitle">கருட புராண விதிகளின்படி தண்டனை</h3>
+                        <p class="info-para" id="txtRulePara">
+                            "100 கோடி மக்கள் இருக்கும் இந்த தேசத்தில், ஒவ்வொருவனும் தன் கடமையை சரியாக செய்தால் அங்கே குற்றவாளியே இருக்க மாட்டான்."
+                        </p>
+                        
+                        <div class="hell-preview-list">
+                            <div class="hell-preview-item">
+                                <span class="hell-symbol">🔥</span>
+                                <div class="hell-meta">
+                                    <strong>கும்பிபாகம் (Kumbhipaka)</strong>
+                                    <small id="txtKumbhiDesc">கொதிக்கும் எண்ணெயில் வறுக்கப்படும் தண்டனை</small>
+                                </div>
+                            </div>
+                            <div class="hell-preview-item">
+                                <span class="hell-symbol">🐛</span>
+                                <div class="hell-meta">
+                                    <strong>கிருமிபோஜனம் (Krimibhojanam)</strong>
+                                    <small id="txtKrimiDesc">விஷப் புழுக்கள் உடலைத் தின்னும் தண்டனை</small>
+                                </div>
+                            </div>
+                            <div class="hell-preview-item">
+                                <span class="hell-symbol">🐍</span>
+                                <div class="hell-meta">
+                                    <strong>அந்தகூபம் (Andhakupa)</strong>
+                                    <small id="txtAndhaDesc">விஷப் பாம்புகள் நிறைந்த இருட்டறைத் தண்டனை</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-mini-card">
+                        <div class="stats-icon">⚡</div>
+                        <div class="stats-content">
+                            <span class="stat-number" id="totalJudgedCount">1,842</span>
+                            <span class="stat-label" id="txtStatLabel">கருட புராணத்தால் விசாரிக்கப்பட்ட புகார்கள்</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: GARUDA PURANA CODEX -->
+        <section id="codexSection" class="portal-section hidden">
+            <div class="section-card">
+                <div class="card-header text-center">
+                    <div class="badge-tag">📜 பண்டைய சாஸ்திரம்</div>
+                    <h2 class="card-title" id="txtCodexHeading">கருட புராண நரக தண்டனைகள் அகராதி</h2>
+                    <p class="card-desc" id="txtCodexDesc">மகாபாரதம் மற்றும் கருட புராணத்தில் கூறப்பட்டுள்ள பாவங்களும் அவற்றுக்குரிய கொடூர நரகத் தண்டனைகளும்.</p>
+                </div>
+
+                <div class="codex-grid" id="codexGridContainer">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: JUDGMENT LEDGER (HISTORY) -->
+        <section id="ledgerSection" class="portal-section hidden">
+            <div class="section-card">
+                <div class="card-header flex-between">
+                    <div>
+                        <div class="badge-tag">⚔️ தண்டனைப் பதிவேடு</div>
+                        <h2 class="card-title" id="txtLedgerHeading">பதிவான புகார்கள் & வழங்கப்பட்ட தீர்ப்புகள்</h2>
+                        <p class="card-desc" id="txtLedgerDesc">இந்த அமர்வில் நீங்கள் சமர்ப்பித்த மற்றும் சேமிக்கப்பட்ட குற்றவாளிகளின் பட்டியல்.</p>
+                    </div>
+                    <button id="clearLedgerBtn" class="clear-data-btn" title="பதிவேட்டை அழிக்கவும்">
+                        <span>🗑️ பதிவுகளை நீக்கு</span>
+                    </button>
+                </div>
+
+                <div id="ledgerEmptyState" class="empty-ledger-state">
+                    <div class="empty-icon">⚖️</div>
+                    <h3 id="txtEmptyTitle">தற்போது புதிய புகார்கள் எதுவும் இல்லை</h3>
+                    <p id="txtEmptyDesc">குற்றவாளியின் தகவல்களை புகார் படிவத்தில் சமர்ப்பித்தால், அவர்களுக்குரிய கருட புராணத் தீர்ப்பு இங்கு பதிவு செய்யப்படும்.</p>
+                    <button class="nav-btn-action" id="emptyToFormBtn">புதிய புகார் பதிவு செய்க</button>
+                </div>
+
+                <div id="ledgerListContainer" class="ledger-cards-grid hidden">
+                    <!-- Dynamic ledger cards -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- VERDICT / JUDGMENT MODAL (ANNIYAN VERDICT CERTIFICATE) -->
+    <div id="verdictModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalVerdictTitle">
+        <div class="modal-dialog verdict-dialog">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close">&times;</button>
+            
+            <div class="verdict-card-inner" id="verdictCardPrintArea">
+                <!-- Seal Header -->
+                <div class="verdict-banner">
+                    <div class="verdict-skull-icon">💀</div>
+                    <div class="verdict-header-txt">
+                        <span class="verdict-super">GARUDA PURANA JUDGMENT</span>
+                        <h2 class="verdict-title" id="modalVerdictTitle">அந்நியனின் இறுதித் தீர்ப்பு</h2>
+                        <span class="verdict-case-id" id="modalCaseId">CASE #ANN-9082</span>
+                    </div>
+                </div>
+
+                <!-- Culprit Meta Strip -->
+                <div class="verdict-culprit-bar">
+                    <div class="culprit-detail-item">
+                        <span class="det-lbl" id="txtVerdictCulpritLbl">குற்றவாளி:</span>
+                        <strong class="det-val" id="modalCulpritName">-</strong>
+                    </div>
+                    <div class="culprit-detail-item">
+                        <span class="det-lbl" id="txtVerdictAgeLbl">வயது:</span>
+                        <strong class="det-val" id="modalCulpritAge">-</strong>
+                    </div>
+                    <div class="culprit-detail-item">
+                        <span class="det-lbl" id="txtVerdictCategoryLbl">குற்ற வகை:</span>
+                        <strong class="det-val badge-crime" id="modalCrimeCat">-</strong>
+                    </div>
+                </div>
+
+                <!-- Crime summary -->
+                <div class="verdict-crime-box">
+                    <span class="crime-box-lbl" id="txtVerdictCrimeLbl">செய்யப்பட்ட பாவம் / அநீதி:</span>
+                    <p class="crime-box-text" id="modalCrimeText">-</p>
+                </div>
+
+                <!-- Assigned Garuda Hell Box -->
+                <div class="assigned-hell-container">
+                    <div class="hell-badge-tag">
+                        <span class="flame-icon">🔥</span>
+                        <span id="txtVerdictHellType">கருட புராண நரகம் & தண்டனை</span>
+                    </div>
+                    <h3 class="hell-name-display" id="modalHellName">கும்பிபாகம் (Kumbhipaka)</h3>
+                    <div class="sanskrit-shloka" id="modalShloka">
+                        "कुम्भीपाकेषु पच्यन्ते पापिनो घोरकर्मिणः"
+                    </div>
+                    <div class="punishment-detailed-desc" id="modalPunishmentDetail">
+                        குற்றவாளி கொதிக்கும் எண்ணெய்க் கொப்பரையில் தூக்கி எறியப்பட்டு வாட்டி வதைக்கப்படுவார்.
+                    </div>
+                </div>
+
+                <!-- Anniyan Sign-off -->
+                <div class="verdict-footer-quote">
+                    <p class="final-warning" id="modalWarningTxt">
+                        "தவறு செய்பவன் யாராக இருந்தாலும் அந்நியனின் தண்டனையிலிருந்து தப்ப முடியாது!"
+                    </p>
+                    <div class="signature-line">
+                        <span>நீதி வழங்கப்பட்டது: <strong id="modalDateVal">இன்று</strong></span>
+                        <span class="sig-seal">ஆணை: அந்நியன்</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="modal-btn-row">
+                <button id="copyVerdictBtn" class="modal-action-btn secondary">
+                    <span>📋 தீர்ப்பை நகலெடு</span>
+                </button>
+                <button id="printVerdictBtn" class="modal-action-btn secondary">
+                    <span>🖨️ ஆவணம் சேமி / அச்சிடு</span>
+                </button>
+                <button id="newComplaintModalBtn" class="modal-action-btn primary">
+                    <span>➕ புதிய புகார் பதிவு</span>
+                </button>
+            </div>
         </div>
-
     </div>
 
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastNotification" class="toast-container hidden" role="status" aria-live="polite">
+        <span class="toast-icon" id="toastIcon">⚡</span>
+        <span class="toast-message" id="toastMsg">செய்தி</span>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
